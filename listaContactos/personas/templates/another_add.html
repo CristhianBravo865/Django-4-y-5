@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Usando un template Base</h2>
-<form method="POST">
+  <form method="POST">
     {% csrf_token %}
-    <p>{{ form.nombre.label_tag }} {{ form.nombre }}</p>
-    <p>{{ form.apellido.label_tag }} {{ form.apellido }}</p>
-    <p>{{ form.edad.label_tag }} {{ form.edad }}</p>
-    <p>{{ form.donador.label_tag }} {{ form.donador }}</p>
-    <input type="submit" value="Grabar" />
-</form>
+    {{ form.as_p }}
+    <input type="submit" value="Grabar"/>
+  </form>
 {% endblock %}
