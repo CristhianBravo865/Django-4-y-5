@@ -6,6 +6,6 @@
     <h1>¿Quiere borrar a esta persona?</h1>
     <h2>{{ objeto.nombres }}</h2>
     <input type="submit" value="Sí">
-    <a href="..">Cancelar</a>
+    <a href="{% url 'personas:listing' %}">Cancelar</a>
 </form>
 {% endblock %}

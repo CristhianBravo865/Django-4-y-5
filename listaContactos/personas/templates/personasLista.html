@@ -4,7 +4,7 @@
   {% for instance in objectList %}
     <p>
       {{ instance.id }}
-      <a href="{{ instance.get_absolute_url }}">
+      <a href="{% url 'personas:browsing' instance.id %}">
         {{ instance.nombres }}
       </a>
     </p>
