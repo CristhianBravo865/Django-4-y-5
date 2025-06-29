@@ -9,11 +9,23 @@ def personasAnotherCreateView(request):
         form = PersonaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')  # o donde quieras redirigir
+            return redirect('/') 
         else:
             print(form.errors)
 
     return render(request, "another_add.html", {"form": form})
+
+def personaCreateView(request):
+    obj = Persona.objects.get(id=2)
+    form = PersonaForm(request.POST or None, instance=obj)
+
+    if form.is_valid():
+        form.save()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'another_add.html', context)
 
 def myHomeView(request):
     return render(request, "home.html", {})
