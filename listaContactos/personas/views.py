@@ -1,6 +1,14 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import RawPersonaForm, PersonaForm
 from .models import Persona
+
+def personasListView(request):
+    queryset = Persona.objects.all()
+    context = {
+        'objectList': queryset,
+    }
+    return render(request, 'personasLista.html', context)
+
 def personasShowObject(request, myID):
     obj = get_object_or_404(Persona, id=myID)
     context = {
