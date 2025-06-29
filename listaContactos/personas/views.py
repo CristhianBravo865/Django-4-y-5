@@ -3,8 +3,13 @@ from django.views.generic import ListView
 from .forms import RawPersonaForm, PersonaForm
 from .models import Persona
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
+class PersonaDeleteView(DeleteView):
+    model = Persona
+    success_url = reverse_lazy('personas:persona-list')
+    template_name = 'persona_confirm_delete.html'
 
 class PersonaUpdateView(UpdateView):
     model = Persona
