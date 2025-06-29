@@ -7,6 +7,7 @@ class PersonaListView(ListView):
     model = Persona
     template_name = 'personasLista.html'
     context_object_name = 'objectList' 
+    queryset = Persona.objects.filter(edad__gt=18)
 
 def personasDeleteView(request, myID):
     obj = get_object_or_404(Persona, id=myID)
