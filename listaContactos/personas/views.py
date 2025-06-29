@@ -1,6 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .forms import RawPersonaForm, PersonaForm
 from .models import Persona
+def personasShowObject(request, myID):
+    obj = get_object_or_404(Persona, id=myID)
+    context = {
+        'objeto': obj,
+    }
+    return render(request, 'descripcion.html', context)
 
 def personasAnotherCreateView(request):
     form = PersonaForm()
