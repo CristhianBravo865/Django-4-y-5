@@ -3,8 +3,13 @@ from django.views.generic import ListView
 from .forms import RawPersonaForm, PersonaForm
 from .models import Persona
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
+
+class PersonaUpdateView(UpdateView):
+    model = Persona
+    fields = ['nombres', 'apellidos', 'edad', 'donador']
+    template_name = 'persona_form.html'
 class PersonaCreateView(CreateView):
     model = Persona
     fields = ['nombres', 'apellidos', 'edad', 'donador']
