@@ -5,6 +5,13 @@ from .models import Persona
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.views import View
+from django.http import JsonResponse
+
+class PersonaQueryView(View):
+    def get(self, request, *args, **kwargs):
+        queryset = Persona.objects.filter(edad__lte=40)
+        return JsonResponse(list(queryset.values()), safe=False)
 
 class PersonaDeleteView(DeleteView):
     model = Persona
