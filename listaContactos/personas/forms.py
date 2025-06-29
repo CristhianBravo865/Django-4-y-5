@@ -9,8 +9,9 @@ class PersonaForm(forms.ModelForm):
     class Meta:
         model = Persona
         fields = ['nombre', 'apellido', 'edad', 'donador']
+
 class RawPersonaForm(forms.Form):
-    nombre = forms.CharField()
-    apellido = forms.CharField()
-    edad = forms.IntegerField()
+    nombres = forms.CharField(label='Tu nombre')
+    apellidos = forms.CharField()
+    edad = forms.IntegerField(initial=20)
     donador = forms.BooleanField(required=False)
