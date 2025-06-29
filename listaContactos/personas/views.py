@@ -1,22 +1,19 @@
 from django.shortcuts import render, redirect
-from .forms import RawPersonaForm
+from .forms import RawPersonaForm, PersonaForm
 from .models import Persona
 
 def personasAnotherCreateView(request):
-    form = RawPersonaForm()
+    form = PersonaForm()
 
     if request.method == "POST":
-        form = RawPersonaForm(request.POST)
+        form = PersonaForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
-            Persona.objects.create(**form.cleaned_data)
+            form.save()
+            return redirect('/')  # o donde quieras redirigir
         else:
             print(form.errors)
 
-    context = {
-        'form': form
-    }
-    return render(request, 'another_add.html', context)
+    return render(request, "another_add.html", {"form": form})
 
 def myHomeView(request):
     return render(request, "home.html", {})

@@ -1,14 +1,28 @@
 from django import forms
-
-
-
-from django import forms
 from .models import Persona
 
 class PersonaForm(forms.ModelForm):
     class Meta:
         model = Persona
-        fields = ['nombre', 'apellido', 'edad', 'donador']
+        fields = ['nombres', 'apellidos', 'edad', 'donador']
+
+    def clean_nombres(self):
+        nombre = self.cleaned_data.get('nombres')
+        if nombre.istitle():
+            return nombre
+        raise forms.ValidationError('El nombre debe empezar con mayúscula.')
+
+    def clean_apellidos(self):
+        apellido = self.cleaned_data.get('apellidos')
+        if apellido.istitle():
+            return apellido
+        raise forms.ValidationError('El apellido debe empezar con mayúscula.')
+
+    def clean_edad(self):
+        edad = self.cleaned_data.get('edad')
+        if edad >= 18:
+            return edad
+        raise forms.ValidationError('Debe ser mayor de 18 años.')
 
 class RawPersonaForm(forms.Form):
     nombres = forms.CharField(
