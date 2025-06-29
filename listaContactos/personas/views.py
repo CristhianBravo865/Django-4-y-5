@@ -16,16 +16,20 @@ def personasAnotherCreateView(request):
     return render(request, "another_add.html", {"form": form})
 
 def personaCreateView(request):
-    obj = Persona.objects.get(id=2)
-    form = PersonaForm(request.POST or None, instance=obj)
+    initialValues = {
+        'nombres': 'Sin Nombre'
+    }
+    form = PersonaForm(request.POST or None, initial=initialValues)
 
     if form.is_valid():
         form.save()
+        form = PersonaForm(initial=initialValues)
 
     context = {
         'form': form
     }
     return render(request, 'another_add.html', context)
+
 
 def myHomeView(request):
     return render(request, "home.html", {})
