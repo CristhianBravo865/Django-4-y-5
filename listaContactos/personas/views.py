@@ -1,6 +1,12 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.views.generic import ListView
 from .forms import RawPersonaForm, PersonaForm
 from .models import Persona
+
+class PersonaListView(ListView):
+    model = Persona
+    template_name = 'personasLista.html'
+    context_object_name = 'objectList' 
 
 def personasDeleteView(request, myID):
     obj = get_object_or_404(Persona, id=myID)

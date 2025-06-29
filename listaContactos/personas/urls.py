@@ -5,14 +5,12 @@ from .views import (
     personasListView,
     personasShowObject,
     personasDeleteView,
+    PersonaListView,
 )
 
 app_name = 'personas'
 
 urlpatterns = [
-    path('add/', personaCreateView, name='adding'),
-    path('anotherAdd/', personasAnotherCreateView, name='another_add'),
-    path('<int:myID>/', personasShowObject, name='browsing'),
-    path('<int:myID>/delete/', personasDeleteView, name='deleting'),
-    path('', personasListView, name='listing'),
+    path('', PersonaListView.as_view(), name='persona-list'), 
+    path('<int:myID>/', personasShowObject, name='browsing'), 
 ]
