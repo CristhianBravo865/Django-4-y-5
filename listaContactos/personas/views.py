@@ -3,19 +3,16 @@ from .forms import RawPersonaForm
 from .models import Persona
 
 def personasAnotherCreateView(request):
-    if request.method == "GET":
-        form = RawPersonaForm()
-    
-    elif request.method == "POST":
+    form = RawPersonaForm()
+
+    if request.method == "POST":
         form = RawPersonaForm(request.POST)
         if form.is_valid():
-            Persona.objects.create(
-                nombre=form.cleaned_data['nombre'],
-                apellido=form.cleaned_data['apellido'],
-                edad=form.cleaned_data['edad']
-            )
-            return redirect('/')  
-    
+            print(form.cleaned_data)
+            Persona.objects.create(**form.cleaned_data)
+        else:
+            print(form.errors)
+
     context = {
         'form': form
     }
