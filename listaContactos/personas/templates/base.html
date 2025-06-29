@@ -1,28 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Mi sitio</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 2rem;
-        }
-    </style>
+  <title>
+    {% block title %}{% endblock %}
+  </title>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/primera">Primera</a></li>
-            <li><a href="/segunda">Segunda</a></li>
-            <li><a href="/tercera">Tercera</a></li>
-        </ul>
-    </nav>
-
-    <hr>
-
-    {% block content %}
-    {% endblock %}
+  {% block body %}{% endblock %}
 </body>
 </html>
