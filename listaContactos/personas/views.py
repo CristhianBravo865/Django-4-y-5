@@ -2,6 +2,17 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .forms import RawPersonaForm, PersonaForm
 from .models import Persona
 
+def personasDeleteView(request, myID):
+    obj = get_object_or_404(Persona, id=myID)
+
+    if request.method == 'POST':
+        print("lo borro")
+        obj.delete()
+        return redirect('listing')
+
+    context = { 'objeto': obj }
+    return render(request, 'personasBorrar.html', context)
+
 def personasListView(request):
     queryset = Persona.objects.all()
     context = {

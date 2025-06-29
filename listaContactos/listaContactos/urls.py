@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from personas.views import personaCreateView, personasAnotherCreateView, anotherView, myHomeView, personasListView, personasShowObject
+from personas.views import personaCreateView, personasAnotherCreateView, anotherView, myHomeView, personasListView, personasShowObject, personasDeleteView
 
 urlpatterns = [
     path('', myHomeView, name='PaginaInicio'),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('personas/<int:myID>/', personasShowObject, name='browsing'),
     path('personas/', personasListView, name='listing'),
+    path('personas/<int:myID>/delete/', personasDeleteView, name='deleting'),
 ]
